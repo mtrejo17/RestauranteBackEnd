@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mtrejo17/RestauranteBackEnd/issues"
   },
-  "homepage": "https://github.com/mtrejo17/RestauranteBackEnd#readme"
+  "homepage": "https://github.com/mtrejo17/RestauranteBackEnd#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
