@@ -1,0 +1,19 @@
+{
+  "name": "restaurantebackend",
+  "version": "1.0.0",
+  "description": "Software de Administación de Restaurantes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtrejo17/RestauranteBackEnd.git"
+  },
+  "author": "Marcos Trejo Reyes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mtrejo17/RestauranteBackEnd/issues"
+  },
+  "homepage": "https://github.com/mtrejo17/RestauranteBackEnd#readme"
+}
