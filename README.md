@@ -42,3 +42,6 @@ git push origin dev
 Instalación de nodemon
 
 sudo npm install nodemon -g
+
+//Descartar todos los cambios desde el último pull o push
+git stash
