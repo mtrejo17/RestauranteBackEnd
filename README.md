@@ -37,3 +37,8 @@
 git add .
 git commit -m 'mensaje'
 git push origin dev
+
+
+Instalación de nodemon
+
+sudo npm install nodemon -g
