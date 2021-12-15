@@ -2,9 +2,13 @@
   "name": "restaurantebackend",
   "version": "1.0.0",
   "description": "Software de Administación de Restaurantes",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-ts": "tsc",
+    "start": "npm run serve",
+    "serve": "node dist/app.js",
+    "watch-node": "nodemon dist/app.js",
+    "watch-ts": "tsc -w"
   },
   "repository": {
     "type": "git",
