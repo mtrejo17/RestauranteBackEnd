@@ -6,8 +6,8 @@
   "scripts": {
     "build-ts": "tsc",
     "start": "npm run serve",
-    "serve": "node dist/app.js",
-    "watch-node": "nodemon dist/app.js",
+    "serve": "node dist/server.js",
+    "watch-node": "nodemon dist/server.js",
     "watch-ts": "tsc -w"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/mtrejo17/RestauranteBackEnd#readme",
   "dependencies": {
     "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^6.1.1"
   }
