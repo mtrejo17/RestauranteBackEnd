@@ -22,12 +22,14 @@ export default class App {s
     }
 
     private configurar():void {
-        this.app.use(bodyParser.json({limit: '8192mb'}));
-        this.app.use(bodyParser.urlenconded({limit: '8192mb', extended: true}));
-        this.app.use(function(req,res, next) {
-            res.setHeader('Access-Controll-Allow-Origin','*');            
-        });
-        this.app.use(cors({origin: '*', credentials: false}));
+        this.app.use(bodyParser.json({limit: '8192mb'}))
+        this.app.use(bodyParser.urlencoded({limit: '8192mb', extended: true}))
+        this.app.use(function (req, res, next) {
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            next();
+        });           
+        this.app.use( cors({ origin: '*', credentials: false  }) );  
+        
         this.app.get('/', (req,res) => {
             res.status(200).json(
                 {
