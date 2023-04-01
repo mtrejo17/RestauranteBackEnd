@@ -5,19 +5,22 @@ import * as mongoose from "mongoose";
 import * as http from 'http';
 
 import { DB_URL, PORT } from "./config";
+import { Routes } from "../routes";
 
 export default class App {s
     private static _instance: App;
     public app: express.Aplication;
     public port: number = Number(PORT);
     private httpServer: http.Server;
+    public routes: Routes = new Routes();
     public io;
    
 
     private constructor() {
        this.app = express();
        this.configurar();
-       this.httpServer = new http.Server(this.app);       
+       this.httpServer = new http.Server(this.app);
+       this.routes.routes(this.app);
        this.configurarDB();
     }
 
