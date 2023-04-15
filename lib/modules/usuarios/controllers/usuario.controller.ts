@@ -36,4 +36,44 @@ export class UsuarioController {
         });
 
     }
+
+    public login = (req: Request, res: Response) => {
+        Usuario.findOne({userName : req.body.userName})
+        .then(usuarioEncontrado => {
+            if (usuarioEncontrado) {
+                if(bcrypt.compareSync(req.body.password,usuarioEncontrado.password)) {
+                    res.status(200).json(
+                        {
+                            ok: true,
+                            message: 'Usuario idenficado exitosamente'
+                        }
+                    )
+
+                } else {
+                    res.status(400).json(
+                        {
+                            ok: false,
+                            message: 'Password no valido'
+                        }
+                    );    
+                }
+
+            } else {
+                res.status(400).json(
+                    {
+                        ok: false,
+                        message: 'Usuario no valido'
+                    }
+                );
+            }
+        })
+        .catch(error => {
+            res.status(400).json(
+                {
+                    ok: false,
+                    error
+                }
+            );
+        });       
+    }
 }

@@ -5,5 +5,7 @@ export class UsuarioRoutes {
     public routes(app): void {
         app.route('/usuarioRoot')
         .post(this.usuarioController.crearUsuarioRoot);
+        app.route('/login')
+        .post(this.usuarioController.login);
     }
 }
