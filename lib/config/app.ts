@@ -7,7 +7,7 @@ import * as http from 'http';
 import { DB_URL, PORT } from "./config";
 import { Routes } from "../routes";
 
-export default class App {s
+export default class App {
     private static _instance: App;
     public app: express.Aplication;
     public port: number = Number(PORT);

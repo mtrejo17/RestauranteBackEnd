@@ -1,5 +1,7 @@
 import { ROOT_PASSWORD } from '../../../config/config';
 import {Request, Response} from 'express';
+import * as bcrypt from 'bcrypt';
+
 import Usuario from '../models/usuario.model';
 
 
@@ -11,7 +13,7 @@ export class UsuarioController {
                 apellidoMaterno: 'root',
                 nombre: 'root',
                 userName: 'root',
-                password: ROOT_PASSWORD,
+                password: bcrypt.hashSync(ROOT_PASSWORD,10),
                 role: 'root'
             }
         );
