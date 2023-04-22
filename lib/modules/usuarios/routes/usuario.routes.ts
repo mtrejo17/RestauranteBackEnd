@@ -9,6 +9,8 @@ export class UsuarioRoutes {
         app.route('/login')
         .post(this.usuarioController.login);
         app.route('/usuario')
+        .get(this.usuarioController.ObtenerUsuarios)
         .post(verificarToken,this.usuarioController.crearUsuario);
+        
     }
 }

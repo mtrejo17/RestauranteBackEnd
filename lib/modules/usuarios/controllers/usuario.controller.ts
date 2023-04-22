@@ -87,4 +87,19 @@ export class UsuarioController {
     public crearUsuario = (req: Request, res: Response) => {
         
     }
+
+    public ObtenerUsuarios = (req: Request, res: Response) => {
+        Usuario.find()
+        .then(usuarios => {
+            res.status(200).json(
+                {
+                    ok: true,
+                    usuarios
+                }
+            )
+        })
+        .catch(error => {
+
+        })
+    }
 }
