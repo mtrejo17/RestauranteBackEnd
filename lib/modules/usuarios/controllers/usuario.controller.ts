@@ -1,6 +1,7 @@
-import { ROOT_PASSWORD } from '../../../config/config';
+import { ROOT_PASSWORD, SEDD } from '../../../config/config';
 import {Request, Response} from 'express';
 import * as bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken';
 
 import Usuario from '../models/usuario.model';
 
@@ -42,10 +43,16 @@ export class UsuarioController {
         .then(usuarioEncontrado => {
             if (usuarioEncontrado) {
                 if(bcrypt.compareSync(req.body.password,usuarioEncontrado.password)) {
+                    let token = jwt.sign(
+                        {
+                            usuario: usuarioEncontrado
+                        }, SEDD, {expiresIn: '2h'}
+                    );
                     res.status(200).json(
                         {
                             ok: true,
-                            message: 'Usuario idenficado exitosamente'
+                            usuario: usuarioEncontrado,
+                            token
                         }
                     )
 
@@ -75,5 +82,9 @@ export class UsuarioController {
                 }
             );
         });       
+    }
+
+    public crearUsuario = (req: Request, res: Response) => {
+        
     }
 }
