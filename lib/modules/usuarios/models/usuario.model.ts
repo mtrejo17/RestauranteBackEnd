@@ -51,10 +51,11 @@ const UsuarioSchema =  new Schema(
 
 UsuarioSchema.methods.toJSON = function() {
     let usuario =  this;
-    let usuarioObject = usuario.toObject();
+    let usuarioObject = usuario.toObject();    
     delete usuarioObject['password'];
     return usuarioObject;
 }
+
 
 UsuarioSchema.plugin(uniqueValidator, {message: '{PATH} ya fue registrado'});
 
