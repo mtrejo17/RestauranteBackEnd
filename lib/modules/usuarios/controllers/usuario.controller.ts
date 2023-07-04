@@ -102,4 +102,33 @@ export class UsuarioController {
 
         })
     }
+
+    public validarUserName = (req: Request, res: Response) => {
+        Usuario.findOne({userName: req.params.userName})
+        .then(usuarioEncontrado => {
+            if (usuarioEncontrado) {
+                res.status(200).json(
+                    {
+                        ok: true,
+                        existe: true
+                    }
+                );
+            } else {
+                res.status(200).json(
+                    {
+                        ok: true,
+                        existe: false
+                    }
+                );
+            }
+        })
+        .catch(error => {
+            res.status(400).json(
+                {
+                    ok: false,
+                    error
+                }
+            );
+        })
+    }
 }

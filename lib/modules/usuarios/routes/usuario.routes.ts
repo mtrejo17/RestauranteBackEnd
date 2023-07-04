@@ -10,6 +10,8 @@ export class UsuarioRoutes {
         .post(this.usuarioController.login);
         app.route('/usuario')
         .get(this.usuarioController.ObtenerUsuarios)
-        .post(verificarToken,this.usuarioController.crearUsuario);        
+        .post(verificarToken,this.usuarioController.crearUsuario);   
+        app.route('/validarUserName/:userName')
+        .get(this.usuarioController.validarUserName);
     }
 }
