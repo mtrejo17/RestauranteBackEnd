@@ -13,5 +13,7 @@ export class UsuarioRoutes {
         .post(verificarToken,this.usuarioController.crearUsuario);   
         app.route('/validarUserName/:userName')
         .get(this.usuarioController.validarUserName);
+        app.route('/roles')
+        .get(this.usuarioController.getRoles);
     }
 }

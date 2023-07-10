@@ -1,4 +1,5 @@
-import { ROOT_PASSWORD, SEDD } from '../../../config/config';
+import { ROLES, ROOT_PASSWORD, SEDD, USER_PASSWORD } from '../../../config/config';
+import * as _ from 'lodash';
 import {Request, Response} from 'express';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
@@ -84,8 +85,35 @@ export class UsuarioController {
         });       
     }
 
-    public crearUsuario = (req: Request, res: Response) => {
-        
+    public crearUsuario = (req: Request, res: Response) => {        
+        const nuevoUsuario = new Usuario(
+            {
+                apellidoPaterno: req.body.apellidoPaterno,
+                apellidoMaterno: req.body.apellidoMaterno,
+                nombre: req.body.nombre,
+                userName: req.body.userName,
+                password: bcrypt.hashSync(USER_PASSWORD,10),
+                role: req.body.role
+            }
+        );
+        nuevoUsuario.save()
+        .then(usuarioCreado => {
+            res.status(201).json(
+                {
+                    ok: true,
+                    usuario: usuarioCreado,
+                    message: 'Usuario creado'
+                }
+            );
+        })
+        .catch(error => {
+            res.status(400).json(
+                {
+                    ok: false,
+                    error
+                }
+            );
+        });
     }
 
     public ObtenerUsuarios = (req: Request, res: Response) => {
@@ -101,6 +129,17 @@ export class UsuarioController {
         .catch(error => {
 
         })
+    }
+
+    public getRoles = (req: Request, res: Response) => {
+        let roles = _.cloneDeep(ROLES);
+        roles.shift();
+        res.status(200).json(
+            {
+                ok: true,
+                roles
+            }
+        )
     }
 
     public validarUserName = (req: Request, res: Response) => {
