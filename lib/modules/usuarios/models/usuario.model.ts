@@ -16,6 +16,7 @@ export interface IUsuario extends mongoose.Document {
     userName: string;
     password: string;
     role: string;
+    activo: Boolean;
 }
 
 const UsuarioSchema =  new Schema(
@@ -45,6 +46,10 @@ const UsuarioSchema =  new Schema(
             type: String,
             enum: validRoles,
             required: [true, 'role requerido']
+        },
+        activo: {
+            type: Boolean,
+            default: true
         }
     }    
 );

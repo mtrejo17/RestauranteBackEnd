@@ -116,6 +116,28 @@ export class UsuarioController {
         });
     }
 
+    public actualizarUsuario = (req: Request, res: Response) => {
+        Usuario.findByIdAndUpdate(req.params.id,req.body)
+        .then(usuarioActualizado => {
+            res.status(200).json(
+                {
+                    ok: true,
+                    usuario: usuarioActualizado,
+                    message: 'Usuario actualizado'
+                }
+            );
+        })
+        .catch(error => {
+            res.status(400).json(
+                {
+                    ok: false,
+                    error,
+                    message: 'Usuarios no actualizado'
+                }
+            )
+        });
+    }
+
     public ObtenerUsuarios = (req: Request, res: Response) => {
         Usuario.find()
         .then(usuarios => {

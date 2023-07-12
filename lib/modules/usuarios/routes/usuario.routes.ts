@@ -15,5 +15,7 @@ export class UsuarioRoutes {
         .get(this.usuarioController.validarUserName);
         app.route('/roles')
         .get(this.usuarioController.getRoles);
+        app.route('/usuario/:id')
+        .put(this.usuarioController.actualizarUsuario);
     }
 }
