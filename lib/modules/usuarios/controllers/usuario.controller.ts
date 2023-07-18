@@ -40,7 +40,14 @@ export class UsuarioController {
     }
 
     public login = (req: Request, res: Response) => {
-        Usuario.findOne({userName : req.body.userName})
+        Usuario.findOne(
+            {
+                $and: [
+                    {userName : req.body.userName},
+                    {activo: true}
+                ]
+            }            
+        )
         .then(usuarioEncontrado => {
             if (usuarioEncontrado) {
                 if(bcrypt.compareSync(req.body.password,usuarioEncontrado.password)) {
@@ -136,6 +143,48 @@ export class UsuarioController {
                 }
             )
         });
+    }
+
+    public activarUsuario = (req: Request, res: Response) => {
+        Usuario.findByIdAndUpdate(req.params.id, {activo: true})
+        .then(usuarioActividado => {
+            res.status(200).json(
+                {
+                    ok: true,
+                    message: 'Usuario activado'
+                }
+            );
+        })
+        .catch(error => {
+            res.status(400).json(
+                {
+                    ok: false,
+                    error,
+                    message: 'Usuario no activado'
+                }
+            );
+        })
+    }
+
+    public desactivarUsuario = (req: Request, res: Response) => {
+        Usuario.findByIdAndUpdate(req.params.id, {activo: false})
+        .then(usuarioActividado => {
+            res.status(200).json(
+                {
+                    ok: true,
+                    message: 'Usuario desactivado'
+                }
+            );
+        })
+        .catch(error => {
+            res.status(400).json(
+                {
+                    ok: false,
+                    error,
+                    message: 'Usuario no desactivado'
+                }
+            );
+        })
     }
 
     public ObtenerUsuarios = (req: Request, res: Response) => {

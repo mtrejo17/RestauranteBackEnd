@@ -17,5 +17,9 @@ export class UsuarioRoutes {
         .get(this.usuarioController.getRoles);
         app.route('/usuario/:id')
         .put(this.usuarioController.actualizarUsuario);
+        app.route('/usuario/activar/:id')
+        .put(this.usuarioController.activarUsuario);
+        app.route('/usuario/desactivar/:id')
+        .put(this.usuarioController.desactivarUsuario);
     }
 }
