@@ -21,5 +21,8 @@ export class UsuarioRoutes {
         .put(this.usuarioController.activarUsuario);
         app.route('/usuario/desactivar/:id')
         .put(this.usuarioController.desactivarUsuario);
+
+        app.route('/usuario/reestablecerPasswd/:id')
+        .put(this.usuarioController.reestablecarPassword);
     }
 }

@@ -187,6 +187,28 @@ export class UsuarioController {
         })
     }
 
+    public reestablecarPassword = (req: Request, res: Response) => {
+        Usuario.findByIdAndUpdate(req.params.id, {password: bcrypt.hashSync(USER_PASSWORD,10)})
+        .then(usuarioActualizado => {
+            res.status(200).json(
+                {
+                    ok: true,
+                    message: 'Contrasena reestablecida'
+                }
+            );
+        })
+        .catch(error => {
+            res.status(400).json(
+                {
+                    ok: false,
+                    error,
+                    message: 'Contrasena no reestablecida'
+
+                }
+            )
+        });
+    }
+
     public ObtenerUsuarios = (req: Request, res: Response) => {
         Usuario.find()
         .then(usuarios => {
