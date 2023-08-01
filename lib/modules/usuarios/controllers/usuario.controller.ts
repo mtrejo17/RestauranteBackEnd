@@ -263,4 +263,11 @@ export class UsuarioController {
             );
         })
     }
+    
+    public checkToken  = (req: Request, res: Response) => {
+        res.json({
+            ok: true,
+            message: 'Token valido'
+        })
+    }
 }
